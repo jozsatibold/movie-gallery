@@ -8,6 +8,7 @@ import {
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { MenuItemComponent } from '@shared/components';
+import { MoviesFacades } from '@global/facades';
 
 @Component({
   selector: 'mg-menu',
@@ -19,16 +20,14 @@ export class MenuComponent {
   isOpen = input.required<boolean>();
 
   selected: number = -1;
+  menuClasses: string = '';
 
-  movies = new Array(100).fill(0).map((_, i) => ({
-    id: i,
-    title: `Title ${i}`,
-  }));
-  menuClasses = '';
+  movies$ = this.moviesFacade.getMovies$;
 
   @Output() close = new EventEmitter();
 
-  constructor() {
+  constructor(private moviesFacade: MoviesFacades) {
+    moviesFacade.loadMovies(1);
     effect(() => {
       if (this.isOpen()) {
         this.menuClasses = 'left-0 md:left-[0px]';

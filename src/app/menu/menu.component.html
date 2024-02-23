@@ -18,7 +18,7 @@
     </button>
   </div>
   <div class='flex flex-col gap-1 w-full'>
-    @for (movie of movies; track movie) {
+    @for (movie of movies$ | async; track movie) {
       <mg-menu-item [selected]='selected === movie.id'
                     [item]='movie'
       (navigated)='itemSelected(movie.id)'/>

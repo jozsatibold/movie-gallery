@@ -1,1 +1,31 @@
-<article class="h-[calc(100%-3.5rem)] bg-gradient-to-b to-gray-900 from-gray-950 text-white">detail works!</article>
+<article class='h-[calc(100%-3.5rem)] bg-gradient-to-b to-gray-900 from-gray-950 text-white px-4 sm:px-8 md:px-20 py-4 md:py-16'>
+  @if (movie$ | async; as movie) {
+    <div class='container mx-auto px-4'>
+      <div class='flex items-start mb-4'>
+        <img
+          class='w-64 h-96 rounded-lg object-cover'
+          [src]='movie.poster_path'
+          alt='Movie Poster'
+        />
+        <div class='ml-6'>
+          <h1 class='text-2xl font-bold mb-2'>{{ movie.title }}</h1>
+          <div class='flex items-center'>
+            <p class='text-gray-500 mr-4'>
+              Rating: {{ movie.vote_average }} ({{ movie.vote_count }} votes)
+            </p>
+          </div>
+          @if (movie.original_title !== movie.title) {
+            <div class='text-sm text-gray-500'>
+              Original Title: {{ movie.original_title }}
+            </div>
+          }
+        </div>
+      </div>
+      <p class='text-lg mb-4'>{{ movie?.overview }}</p>
+    </div>
+  } @else {
+    <div class='text-xl text-center h-full w-full flex items-center justify-center'>
+      <mg-spinner/>
+    </div>
+  }
+</article>
