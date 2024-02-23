@@ -1,21 +1,29 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import {MenuComponent} from "./menu/menu.component";
 import {NotificationService} from "@shared/services";
-import { NotificationComponent } from '@shared/components/notification/notification.component';
-import { CommonModule } from '@angular/common';
+import { NotificationComponent } from '@shared/components';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 
 @Component({
   selector: 'mg-root',
   standalone: true,
-  imports: [RouterOutlet, MenuComponent, NotificationComponent, CommonModule],
+  imports: [
+    RouterOutlet,
+    MenuComponent,
+    NotificationComponent,
+    CommonModule,
+    NgOptimizedImage,
+  ],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss',
 })
-export class AppComponent implements OnInit {
-  notification$= this.notificationService.listener$;
+export class AppComponent {
+  notification$ = this.notificationService.listener$;
+  isMenuOpened = false;
 
   constructor(private notificationService: NotificationService) {}
 
-  ngOnInit() {}
+  openMenu(visible: boolean): void {
+    this.isMenuOpened = visible;
+  }
 }

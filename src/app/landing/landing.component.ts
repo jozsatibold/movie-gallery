@@ -6,13 +6,12 @@ import { NotificationService } from '@shared/services';
   standalone: true,
   imports: [],
   templateUrl: './landing.component.html',
-  styleUrl: './landing.component.scss'
 })
 export class LandingComponent {
 
   constructor(private notificationService: NotificationService) {}
 
   showNotification() {
-    this.notificationService.notify('Test asdljasnd kajsbdaksh bdkasjkjdkjbdkashkdujludif haweifnbawerk nfaiwln haiku', 'error');
+    this.notificationService.notify('Test notification', 'error');
   }
 }

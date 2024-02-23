@@ -1,11 +1,17 @@
-<header class="px-4 py-3.5 w-screen bg-gray-950">
-  <h1 class="text-red-500 font-medium text-2xl md:text-3xl">Movie Gallery</h1>
+<header class='px-4 py-3.5 h-16 w-screen bg-gray-950 flex items-center gap-4'>
+  <button (click)='openMenu(true)'
+          class='md:hidden p-1.5 focus:ring-2 focus:ring-white/20 hover:bg-white/5 transition-colors duration-200 rounded-md ease-in-out'>
+    <img ngSrc='assets/svg/menu-line.svg' alt='Hamburger menu icon' width='24' height='24' />
+  </button>
+  <h1 class='text-red-500 font-medium text-2xl md:text-3xl'>Movie Gallery</h1>
 </header>
-<mg-notification [notification]='notification$ | async'></mg-notification>
-<mg-menu></mg-menu>
-<main class="absolute md:left-[300px] top-[4rem] w-screen block lg:w-[calc(100vw-300px)] h-[calc(100vh-4rem)] bg-white/80 overflow-y-auto">
+<mg-notification [notification]='notification$ | async' />
+<mg-menu [isOpen]='isMenuOpened' (close)='openMenu(false)' />
+<main
+  class='absolute md:left-[300px] top-[4rem] w-screen block md:w-[calc(100vw-300px)] h-[calc(100vh-4rem)] bg-white/80 overflow-y-auto'>
   <router-outlet />
-  <footer class="py-4 px-4 sm:px-8 md:px-20 bg-gray-900 text-white font-medium text-base">Copyright 2024 Movie Gallery</footer>
+  <footer class='py-4 px-4 sm:px-8 md:px-20 bg-gray-900 text-white font-medium text-base'>Copyright 2024 Movie Gallery
+  </footer>
 </main>
 
 

@@ -1,7 +1,8 @@
-import {Component, EventEmitter, Output, input, effect} from '@angular/core';
-import {Notification} from "@global/models";
-import {BehaviorSubject} from "rxjs";
-import {CommonModule} from "@angular/common";
+import { ChangeDetectionStrategy, Component, effect, EventEmitter, input, Output } from '@angular/core';
+import { Notification } from '@global/models';
+import { BehaviorSubject } from 'rxjs';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
+
 interface NotificationConfig {
  bgColor: string;
  message: string;
@@ -10,15 +11,30 @@ interface NotificationConfig {
 @Component({
   selector: 'mg-notification',
   standalone: true,
-  imports: [CommonModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [CommonModule, NgOptimizedImage],
   template: `
-    @if(notification$ | async; as notification) {
-      <div [ngClass]="['fixed left-1/2 -translate-x-1/2 z-50 rounded-md shadow-xl text-white font-medium w-[500px] max-w-[95vw] bottom-3 md:bottom-auto md:top-3 py-3 px-4', notification?.bgColor] " >
+    @if (notification$ | async; as notification) {
+      <div
+        [ngClass]="[
+          'fixed left-1/2 -translate-x-1/2 z-50 rounded-md shadow-xl text-white',
+          'font-medium w-[500px] max-w-[95vw] bottom-3 md:bottom-auto md:top-3 py-3 px-4',
+          notification?.bgColor,
+          'flex items-center md:gap-2 gap-4 justify-between'
+        ]">
         <p>{{ notification?.message }}</p>
+        <button
+          (click)="close()"
+          class="p-1.5 focus:ring-2 focus:ring-white/20 hover:bg-white/5 transition-colors duration-200 rounded-md ease-in-out">
+          <img
+            ngSrc="assets/svg/close-fill.svg"
+            alt="Close notification"
+            width="24"
+            height="24" />
+        </button>
       </div>
     }
   `,
-  styleUrl: './notification.component.scss',
 })
 export class NotificationComponent {
   notification = input.required<Notification | null>();
@@ -48,7 +64,7 @@ export class NotificationComponent {
         this.notification$.next(null);
         this.intervalId = null;
       }
-    }, 5000);
+    }, 50000);
   }
 
   _clearInterval() {
@@ -60,6 +76,7 @@ export class NotificationComponent {
   close() {
     this._clearInterval();
     this.closed.emit();
+    this.notification$.next(null);
   }
   _getBackgroundColor() {
     const notification = this.notification();
