@@ -7,22 +7,30 @@ import {
 } from '@angular/core';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { MenuItemComponent } from '@shared/components';
+import { ItemScrollContainerComponent } from '@shared/components';
 import { MoviesFacades } from '@global/facades';
+import { Observable } from 'rxjs';
+import { Paginator } from '@global/models';
 
 @Component({
   selector: 'mg-menu',
   standalone: true,
-  imports: [CommonModule, RouterModule, MenuItemComponent, NgOptimizedImage],
+  imports: [
+    CommonModule,
+    RouterModule,
+    NgOptimizedImage,
+    ItemScrollContainerComponent,
+  ],
   templateUrl: './menu.component.html',
 })
 export class MenuComponent {
   isOpen = input.required<boolean>();
 
-  selected: number = -1;
   menuClasses: string = '';
 
   movies$ = this.moviesFacade.getMovies$;
+  paginator$: Observable<Paginator> = this.moviesFacade.getMoviesPaginator$
+  isLoading$: Observable<boolean> = this.moviesFacade.isLoading$;
 
   @Output() close = new EventEmitter();
 
@@ -37,11 +45,11 @@ export class MenuComponent {
     });
   }
 
-  itemSelected(selected: number) {
-    this.selected = selected;
-  }
-
   closeMenu() {
     this.close.emit();
+  }
+
+  loadNextPage(page: number) {
+    this.moviesFacade.loadMovies(page);
   }
 }

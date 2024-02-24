@@ -1,17 +1,21 @@
 import { Component } from '@angular/core';
-import { NotificationService } from '@shared/services';
+import { MoviesFacades } from '@global/facades';
+import { Observable } from 'rxjs';
+import { MovieItem } from '@global/models';
+import { map } from 'rxjs/operators';
+import { AsyncPipe } from '@angular/common';
+import { ImagePipe } from '@shared/pipes';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'mg-landing',
   standalone: true,
-  imports: [],
+  imports: [AsyncPipe, ImagePipe, RouterLink],
   templateUrl: './landing.component.html',
 })
 export class LandingComponent {
-
-  constructor(private notificationService: NotificationService) {}
-
-  showNotification() {
-    this.notificationService.notify('Test notification', 'error');
-  }
+  topMovies$: Observable<MovieItem[]> = this.movieFacade.getMovies$.pipe(
+    map(movies => (movies || []).slice(0, 6))
+  );
+  constructor(private movieFacade: MoviesFacades) {}
 }

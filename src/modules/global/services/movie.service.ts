@@ -18,7 +18,7 @@ export class MovieService {
   }
 
   getMovies(page: number): Observable<DiscoverMovies> {
-    return this.http.get<DiscoverMovies>(`/discover/movie/`, {
+    return this.http.get<DiscoverMovies>(`/discover/movie`, {
       params: {
         'language': 'en-US',
         'include_adult': false,

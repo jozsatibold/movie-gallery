@@ -1,31 +1,63 @@
-<article class='h-[calc(100%-3.5rem)] bg-gradient-to-b to-gray-900 from-gray-950 text-white px-4 sm:px-8 md:px-20 py-4 md:py-16'>
+<article
+  class='relative min-h-[calc(100%-3.5rem)] bg-gradient-to-b to-gray-900 from-gray-950 text-white px-4 sm:px-8 md:px-20 py-4 md:py-16'>
   @if (movie$ | async; as movie) {
-    <div class='container mx-auto px-4'>
-      <div class='flex items-start mb-4'>
+    <div class='z-1 w-full h-full absolute top-0 left-0 bottom-0 right-0'>
+      <img
+      class='w-full h-full block object-cover'
+      [src]='movie.backdrop_path | withImgUrl'
+      alt='Movie Poster'
+    />
+      <div class='absolute top-0 left-0 bottom-0 right-0 z-1 bg-black/60 backdrop-blur-xl'></div>
+    </div>
+    <div class='relative z-10 container mx-auto px-4 max-w-[1100px]'>
+      <div class='flex gap-4 flex-col sm:flex-row items-start mb-4'>
         <img
-          class='w-64 h-96 rounded-lg object-cover'
-          [src]='movie.poster_path'
+          class='aspect-3/4 w-[50vw] sm:w-48 rounded-lg object-cover'
+          [src]='movie.poster_path | withImgUrl'
           alt='Movie Poster'
         />
-        <div class='ml-6'>
-          <h1 class='text-2xl font-bold mb-2'>{{ movie.title }}</h1>
-          <div class='flex items-center'>
-            <p class='text-gray-500 mr-4'>
-              Rating: {{ movie.vote_average }} ({{ movie.vote_count }} votes)
-            </p>
-          </div>
+        <div class='text-gray-300'>
+          <h2 class='text-2xl font-bold mb-2 text-white'>{{ movie.title }}</h2>
           @if (movie.original_title !== movie.title) {
-            <div class='text-sm text-gray-500'>
+            <h3 class='italic text-lg'>
               Original Title: {{ movie.original_title }}
+            </h3>
+          }
+          <div class='flex flex-wrap gap-4'>
+            Genres:
+            @for (genre of movie.genres; track genre.id) {
+              {{genre.name | uppercase}}
+            }
+          </div>
+          @if (movie.homepage) {
+            <div>
+              Homepage: <a [href]='movie.homepage'
+                           target='_blank'
+                           class='underline text-blue-300 hover:font-medium'>link</a>
             </div>
           }
+          <div class='flex  flex-col my-4 justify-center mr-4 gap-2'>
+            <p>
+              Rating: <b>{{ movie.vote_average }}</b> ({{ movie.vote_count }} votes)
+            </p>
+
+            <p>
+              Release date: <b>{{ movie.release_date | date: 'longDate' }}</b>
+            </p>
+            <p>
+              Revenue: <b>{{ movie.revenue }} $</b>
+            </p>
+            <p>
+              Runtime: <b>{{ movie.runtime }} minutes</b>
+            </p>
+          </div>
         </div>
       </div>
-      <p class='text-lg mb-4'>{{ movie?.overview }}</p>
+      <p class='sm:mt-4 text-lg mb-4'>{{ movie?.overview }}</p>
     </div>
   } @else {
     <div class='text-xl text-center h-full w-full flex items-center justify-center'>
-      <mg-spinner/>
+      <mg-spinner />
     </div>
   }
 </article>

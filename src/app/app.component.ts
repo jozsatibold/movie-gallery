@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterLink, RouterOutlet } from '@angular/router';
 import {MenuComponent} from "./menu/menu.component";
 import {NotificationService} from "@shared/services";
 import { NotificationComponent } from '@shared/components';
@@ -14,6 +14,7 @@ import { CommonModule, NgOptimizedImage } from '@angular/common';
     NotificationComponent,
     CommonModule,
     NgOptimizedImage,
+    RouterLink,
   ],
   templateUrl: './app.component.html',
 })

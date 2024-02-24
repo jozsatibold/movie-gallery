@@ -1,6 +1,7 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
-import { MoviesState } from '@global/store';
-import { Movie } from '@global/models';
+
+import { moviesAdapter, MoviesState } from '@global/store';
+import { Paginator } from '@global/models';
 
 const movieState = createFeatureSelector<MoviesState>('movies');
 
@@ -12,15 +13,21 @@ const getSelectedMovie = createSelector(
 
 const getMovies = createSelector(
   movieState,
-  (state: MoviesState) => Object.values(state.entities) as Array<Movie>
+  (state: MoviesState) => moviesAdapter.getSelectors().selectAll(state)
 )
 const getPaginatorInfo = createSelector(
   movieState,
-  ({ page, totalPages, totalResults }: MoviesState) => ({ page, totalPages, totalResults }),
+  ({ page, totalPages, totalResults }: MoviesState): Paginator => ({ page, totalPages, totalResults }),
+)
+
+const isLoading = createSelector(
+  movieState,
+  ({ loading }: MoviesState) => loading
 )
 
 export default {
   getSelectedMovie,
   getMovies,
-  getPaginatorInfo
+  getPaginatorInfo,
+  isLoading
 }

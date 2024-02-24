@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { Movie } from '@global/models';
+import { Movie, MovieItem } from '@global/models';
 
 enum Actions {
   LoadMovies = '[Movies] LoadMovies',
@@ -8,13 +8,14 @@ enum Actions {
   LoadMoviesFailure = '[Movies] LoadMoviesFailure',
   SelectMovie = '[Movies] SelectMovie',
   ClearMovie = '[Movies] ClearMovie',
+  LoadMovie = '[Movies] LoadMovie',
 }
 // Load movies actions
 const loadMovies = createAction(Actions.LoadMovies, props<{ page: number }>());
 
 const loadMoviesSuccess = createAction(
   Actions.LoadMoviesSuccess,
-  props<{ movies: Movie[], totalResults: number, totalPages: number, page: number }>()
+  props<{ movies: MovieItem[], totalResults: number, totalPages: number, page: number }>()
 );
 
 const loadMoviesFailure = createAction(
@@ -28,6 +29,11 @@ const clearMovies = createAction(Actions.ClearMovies);
 // Select movie action
 const selectMovie = createAction(Actions.SelectMovie, props<{ movieId: number }>());
 
+const loadMovie = createAction(
+  Actions.LoadMovie,
+  props<{ movie: Movie }>()
+);
+
 // Clear selected movie from the store
 const clearMovie = createAction(Actions.ClearMovie);
 
@@ -37,5 +43,6 @@ export default {
   loadMoviesFailure,
   clearMovies,
   clearMovie,
-  selectMovie
+  selectMovie,
+  loadMovie
 }

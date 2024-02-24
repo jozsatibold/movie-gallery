@@ -3,20 +3,19 @@ import { Movie } from '@global/models';
 import { Observable } from 'rxjs';
 import { CommonModule } from '@angular/common';
 import { SpinnerComponent } from '@shared/components';
-import { ActivatedRoute } from '@angular/router';
-import { map } from 'rxjs/operators';
+import { ImagePipe } from '@shared/pipes';
+import { MoviesFacades } from '@global/facades';
 
 @Component({
   selector: 'mg-detail',
   standalone: true,
-  imports: [CommonModule, SpinnerComponent],
+  imports: [CommonModule, SpinnerComponent, ImagePipe],
   templateUrl: './detail.component.html',
   styleUrl: './detail.component.scss',
 })
 export class DetailComponent {
-  movie$: Observable<Movie | null> = this.route.data.pipe(
-    map(({ movie }) => movie)
-  );
 
-  constructor(private route: ActivatedRoute) {}
+  movie$: Observable<Movie | null> = this.moviesFacades.getSelectedMovie$;
+
+  constructor(private moviesFacades: MoviesFacades) {}
 }

@@ -1,9 +1,8 @@
-export interface Movie {
-  id: number;
-  title: string;
-  original_title: string;
-  overview: string;
-  poster_path: string;
-  vote_average: number;
-  vote_count: number;
+import { MovieItem } from '@global/models/movie-item.model';
+
+export interface Movie extends MovieItem {
+  revenue: number,
+  runtime: number,
+  homepage: string;
+  genres: Array<{id: number, name: string}>
 }

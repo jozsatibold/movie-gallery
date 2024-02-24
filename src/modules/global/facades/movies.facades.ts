@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import MoviesActions from '@global/store/movies.actions';
 import MoviesSelector from '@global/store/movies.selector';
 import { Observable } from 'rxjs';
-import { Movie } from '@global/models';
+import { Movie, MovieItem, Paginator } from '@global/models';
 
 @Injectable({
   providedIn: 'root',
@@ -27,7 +27,12 @@ export class MoviesFacades {
     this.store.dispatch(MoviesActions.loadMovies({ page }))
   }
 
-  getMovies$: Observable<Array<Movie>> = this.store.select(MoviesSelector.getMovies);
+  getMovies$: Observable<Array<MovieItem>> = this.store.select(MoviesSelector.getMovies);
+
+  getMoviesPaginator$: Observable<Paginator> = this.store.select(MoviesSelector.getPaginatorInfo);
 
   getSelectedMovie$: Observable<Movie | null> = this.store.select(MoviesSelector.getSelectedMovie);
+
+  isLoading$: Observable<boolean> = this.store.select(MoviesSelector.isLoading);
+
 }

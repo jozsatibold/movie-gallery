@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, map, switchMap, tap } from 'rxjs/operators';
+import { catchError, map, switchMap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import MoviesActions from './movies.actions';
 import { MovieService } from '@global/services';
@@ -26,7 +26,7 @@ export class MoviesEffects {
                 page,
               })
           ),
-          catchError(({error}) => {
+          catchError(({ error }) => {
             return of(MoviesActions.loadMoviesFailure({ error: error }));
           })
         )
@@ -34,7 +34,15 @@ export class MoviesEffects {
     )
   );
 
-  // Add effect to handle `selectMovie` action based on your requirements
+  loadMovie$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(MoviesActions.selectMovie),
+      switchMap(({ movieId }) => this.movieService.getMovie(movieId)),
+      map(movie => {
+        return MoviesActions.loadMovie({ movie });
+      })
+    )
+  );
 
   constructor(
     private actions$: Actions,

@@ -2,14 +2,16 @@ import { ActivatedRouteSnapshot, ResolveFn, RouterStateSnapshot } from '@angular
 import { inject } from '@angular/core';
 import { MoviesFacades } from '@global/facades';
 import { Movie } from '@global/models';
+import { filter } from 'rxjs';
 
 export const movieResolver: ResolveFn<Movie | null> = (
   route: ActivatedRouteSnapshot
 ) => {
   const movieId = route.params['id'];
-  const service = inject(MoviesFacades);
+  const facade = inject(MoviesFacades);
   if (movieId && !isNaN(+movieId)) {
-    service.selectMovie(movieId);
+    facade.clearMovie();
+    facade.selectMovie(movieId);
   }
-  return service.getSelectedMovie$;
+  return null;
 };
