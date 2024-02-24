@@ -17,7 +17,7 @@ import {
   withInterceptors,
 } from '@angular/common/http';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
-import { TokenInterceptor, UrlInterceptor } from '@global/interceptors';
+import { ErrorInterceptor, TokenInterceptor, UrlInterceptor } from '@global/interceptors';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -29,7 +29,7 @@ export const appConfig: ApplicationConfig = {
     }),
     importProvidersFrom(HttpClientModule),
     provideHttpClient(
-      withInterceptors([UrlInterceptor, TokenInterceptor])
+      withInterceptors([UrlInterceptor, TokenInterceptor, ErrorInterceptor])
     ),
     provideStore({
       movies: moviesReducer,

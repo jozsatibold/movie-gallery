@@ -24,7 +24,6 @@ export class MoviesFacades {
   }
 
   loadMovies(page: number) {
-    console.log('loadMovies', page);
     this.store.dispatch(MoviesActions.loadMovies({ page }))
   }
 

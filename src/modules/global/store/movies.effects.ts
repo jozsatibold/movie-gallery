@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { catchError, map, switchMap } from 'rxjs/operators';
+import { catchError, map, switchMap, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import MoviesActions from './movies.actions';
 import { MovieService } from '@global/services';
@@ -26,7 +26,9 @@ export class MoviesEffects {
                 page,
               })
           ),
-          catchError(error => of(MoviesActions.loadMoviesFailure({ error })))
+          catchError(({error}) => {
+            return of(MoviesActions.loadMoviesFailure({ error: error }));
+          })
         )
       )
     )

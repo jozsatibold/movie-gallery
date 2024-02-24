@@ -4,11 +4,15 @@ import {
   HttpRequest,
 } from '@angular/common/http';
 import * as process from 'node:process';
+import { environment } from '../../../environments/environment';
 
 export const TokenInterceptor : HttpInterceptorFn = (req: HttpRequest<unknown>, next:
   HttpHandlerFn) => {
-  const token = process.env['AUTH_TOKEN'];
-  if (!token) {
+  const token = environment.apiKey;
+  const isNotApiCall =
+    req.url.match('^(((https|http)://)|(/assets/)).*$') !== null;
+
+  if (!token || !isNotApiCall) {
     return next(req);
   }
   const modifiedReq = req.clone({
