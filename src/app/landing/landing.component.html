@@ -1,4 +1,5 @@
-<article class="h-auto bg-gradient-to-b to-gray-900 from-gray-950 text-white pb-20">
+<article
+  class="h-auto bg-gradient-to-b to-gray-900 from-gray-950 text-white pb-20">
   <div
     class="w-full lg:w-4/6 flex flex-col items-start justify-center px-4 sm:px-8 md:px-20 pt-4 md:pt-8">
     <h2 class="text-3xl font-bold mb-4">Welcome to Movie Haven!</h2>
@@ -7,9 +8,11 @@
       detailed information.
     </p>
   </div>
-  <div class="flex flex-col gap-4 px-4 sm:px-8 md:px-20 xl:max-w-[1100px] 2xl:max-w-[1400px]">
+  <div
+    class="flex flex-col gap-4 px-4 sm:px-8 md:px-20 xl:max-w-[1100px] 2xl:max-w-[1400px]">
     <h3 class="text-2xl font-bold mb-2">Top popular movies</h3>
-    <div class="inline-grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-4 gap-y-8">
+    <div
+      class="inline-grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-4 gap-y-8">
       @for (movie of topMovies$ | async; track movie.id) {
         <a
           class="w-full h-auto group max-w-[300px] m-auto"

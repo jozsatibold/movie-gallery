@@ -44,10 +44,14 @@ describe('MenuComponent', () => {
     fixture = TestBed.createComponent(MenuComponent);
     fixture.componentRef.setInput('isOpen', true);
     fixture.detectChanges();
-    expect(fixture.componentInstance.menuClasses).toEqual('left-0 md:left-[0px]');
+    expect(fixture.componentInstance.menuClasses).toEqual(
+      'left-0 md:left-[0px]'
+    );
 
     fixture.componentRef.setInput('isOpen', false);
     fixture.detectChanges();
-    expect(fixture.componentInstance.menuClasses).toEqual('left-[-300px] md:left-[0px]');
+    expect(fixture.componentInstance.menuClasses).toEqual(
+      'left-[-300px] md:left-[0px]'
+    );
   });
 });

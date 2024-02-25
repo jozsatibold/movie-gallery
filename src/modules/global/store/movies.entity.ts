@@ -21,4 +21,6 @@ export interface MoviesState extends EntityState<MovieItem> {
 
 export const moviesAdapter = createEntityAdapter<MovieItem>();
 
-export const initialState: MoviesState = moviesAdapter.getInitialState(movieStoreInitialState);
+export const initialState: MoviesState = moviesAdapter.getInitialState(
+  movieStoreInitialState
+);

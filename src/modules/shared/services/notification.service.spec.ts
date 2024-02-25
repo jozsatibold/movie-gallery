@@ -17,10 +17,9 @@ describe('NotificationService', () => {
 
     service.notify(message, type);
 
-    service.listener$.subscribe(
-        result =>
-          expect(result).toEqual(jasmine.objectContaining({ message, type }))
-  );
+    service.listener$.subscribe(result =>
+      expect(result).toEqual(jasmine.objectContaining({ message, type }))
+    );
   });
 
   it('should not emit notification for empty message', () => {

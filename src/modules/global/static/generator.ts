@@ -1,6 +1,6 @@
 import { MovieItem } from '@global/models';
 
-export  const generateMockMovieList = (length: number): Array<MovieItem> => {
+export const generateMockMovieList = (length: number): Array<MovieItem> => {
   return new Array(length).fill(0).map((_, i) => ({
     id: i + 1,
     title: `Movie ${i + 1}`,

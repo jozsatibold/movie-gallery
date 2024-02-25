@@ -8,7 +8,6 @@ import { catchError } from 'rxjs/operators';
 import { inject } from '@angular/core';
 import { NotificationService } from '@shared/services';
 
-
 // This interceptor caches the server errors
 export const ErrorInterceptor: HttpInterceptorFn = (
   req: HttpRequest<unknown>,

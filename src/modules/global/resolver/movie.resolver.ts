@@ -1,7 +1,4 @@
-import {
-  ActivatedRouteSnapshot,
-  ResolveFn,
-} from '@angular/router';
+import { ActivatedRouteSnapshot, ResolveFn } from '@angular/router';
 import { inject } from '@angular/core';
 import { MoviesFacades } from '@global/facades';
 import { Movie } from '@global/models';
@@ -9,7 +6,6 @@ import { Movie } from '@global/models';
 export const movieResolver: ResolveFn<Movie | null> = (
   route: ActivatedRouteSnapshot
 ) => {
-
   const movieId = route.params['id'];
 
   const facade = inject(MoviesFacades);

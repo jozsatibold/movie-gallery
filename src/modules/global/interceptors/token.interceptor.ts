@@ -5,7 +5,6 @@ import {
 } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 
-
 // This interceptor set the token to the header
 export const TokenInterceptor: HttpInterceptorFn = (
   req: HttpRequest<unknown>,

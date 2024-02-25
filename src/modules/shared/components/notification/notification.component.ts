@@ -46,7 +46,6 @@ const NOTIFICATION_DURATION = 5000;
   `,
 })
 export class NotificationComponent {
-
   notification = input<Notification | null>();
 
   @Output() closed = new EventEmitter<void>();

@@ -5,6 +5,8 @@ describe('ImagePipe', () => {
   const pipe = new ImagePipe();
 
   it('transforms "imagePath" to link', () => {
-    expect(pipe.transform('imagePath')).toBe('https://image.tmdb.org/t/p/w500/imagePath.jpg');
+    expect(pipe.transform('imagePath')).toBe(
+      'https://image.tmdb.org/t/p/w500/imagePath.jpg'
+    );
   });
 });
