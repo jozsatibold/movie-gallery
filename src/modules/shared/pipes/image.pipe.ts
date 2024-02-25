@@ -2,7 +2,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
   standalone: true,
-  name: 'withImgUrl'
+  name: 'withImgUrl',
 })
 export class ImagePipe implements PipeTransform {
   transform(value: string): string {

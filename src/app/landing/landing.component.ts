@@ -15,7 +15,8 @@ import { RouterLink } from '@angular/router';
 })
 export class LandingComponent {
   topMovies$: Observable<MovieItem[]> = this.movieFacade.getMovies$.pipe(
-    map(movies => (movies || []).slice(0, 6))
+    map(movies => (movies || []).slice(0, 12))
   );
+
   constructor(private movieFacade: MoviesFacades) {}
 }

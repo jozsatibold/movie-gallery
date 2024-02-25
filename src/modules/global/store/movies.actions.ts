@@ -15,7 +15,12 @@ const loadMovies = createAction(Actions.LoadMovies, props<{ page: number }>());
 
 const loadMoviesSuccess = createAction(
   Actions.LoadMoviesSuccess,
-  props<{ movies: MovieItem[], totalResults: number, totalPages: number, page: number }>()
+  props<{
+    movies: MovieItem[];
+    totalResults: number;
+    totalPages: number;
+    page: number;
+  }>()
 );
 
 const loadMoviesFailure = createAction(
@@ -27,12 +32,12 @@ const loadMoviesFailure = createAction(
 const clearMovies = createAction(Actions.ClearMovies);
 
 // Select movie action
-const selectMovie = createAction(Actions.SelectMovie, props<{ movieId: number }>());
-
-const loadMovie = createAction(
-  Actions.LoadMovie,
-  props<{ movie: Movie }>()
+const selectMovie = createAction(
+  Actions.SelectMovie,
+  props<{ movieId: number }>()
 );
+
+const loadMovie = createAction(Actions.LoadMovie, props<{ movie: Movie }>());
 
 // Clear selected movie from the store
 const clearMovie = createAction(Actions.ClearMovie);
@@ -44,5 +49,5 @@ export default {
   clearMovies,
   clearMovie,
   selectMovie,
-  loadMovie
-}
+  loadMovie,
+};

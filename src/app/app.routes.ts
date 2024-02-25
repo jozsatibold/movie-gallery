@@ -12,7 +12,7 @@ export const routes: Routes = [
   },
   {
     path: AppRoutes.MOVIE,
-    resolve:  {
+    resolve: {
       movie: movieResolver,
     },
     loadComponent: () =>

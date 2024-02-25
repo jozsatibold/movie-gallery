@@ -17,7 +17,11 @@ import {
   withInterceptors,
 } from '@angular/common/http';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
-import { ErrorInterceptor, TokenInterceptor, UrlInterceptor } from '@global/interceptors';
+import {
+  ErrorInterceptor,
+  TokenInterceptor,
+  UrlInterceptor,
+} from '@global/interceptors';
 
 export const appConfig: ApplicationConfig = {
   providers: [

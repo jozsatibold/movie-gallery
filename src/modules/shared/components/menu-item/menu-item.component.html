@@ -1,7 +1,11 @@
-<a [routerLink]='"/" + item().id'
-   (click)='itemSelected()'
-   [ngClass]='[
-   "mx-2 md:mx-4 px-4 py-3 rounded-xl hover:bg-red-600/10 transition-colors duration-200",
-    "ease-in-out text-white text-xl whitespace-nowrap text-ellipsis w-fill",
-     "overflow-hidden block",
-    selected() ? "bg-red-950/40" : ""]'>{{ item().title }}</a>
+<a
+  [routerLink]="'/' + item().id"
+  (click)="itemSelected()"
+  [ngClass]="[
+    'mx-2 md:mx-4 px-4 py-3 rounded-xl hover:bg-red-600/10 transition-colors duration-200',
+    'ease-in-out text-white text-xl whitespace-nowrap text-ellipsis w-fill',
+    'overflow-hidden block',
+    selected() ? 'bg-red-950/40' : ''
+  ]"
+  >{{ item().title }}</a
+>

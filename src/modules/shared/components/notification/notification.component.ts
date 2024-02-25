@@ -1,12 +1,21 @@
-import { ChangeDetectionStrategy, Component, effect, EventEmitter, input, Output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  effect,
+  EventEmitter,
+  input,
+  Output,
+} from '@angular/core';
 import { Notification } from '@global/models';
 import { BehaviorSubject } from 'rxjs';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 
 interface NotificationConfig {
- bgColor: string;
- message: string;
+  bgColor: string;
+  message: string;
 }
+
+const NOTIFICATION_DURATION = 5000;
 
 @Component({
   selector: 'mg-notification',
@@ -37,9 +46,13 @@ interface NotificationConfig {
   `,
 })
 export class NotificationComponent {
-  notification = input.required<Notification | null>();
+
+  notification = input<Notification | null>();
+
   @Output() closed = new EventEmitter<void>();
+
   private intervalId: any;
+
   notification$ = new BehaviorSubject<NotificationConfig | null>(null);
 
   constructor() {
@@ -64,7 +77,7 @@ export class NotificationComponent {
         this.notification$.next(null);
         this.intervalId = null;
       }
-    }, 50000);
+    }, NOTIFICATION_DURATION);
   }
 
   _clearInterval() {

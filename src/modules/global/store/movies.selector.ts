@@ -11,23 +11,26 @@ const getSelectedMovie = createSelector(
   (state: MoviesState) => state.selectedMovie
 );
 
-const getMovies = createSelector(
-  movieState,
-  (state: MoviesState) => moviesAdapter.getSelectors().selectAll(state)
-)
+const getMovies = createSelector(movieState, (state: MoviesState) =>
+  moviesAdapter.getSelectors().selectAll(state)
+);
 const getPaginatorInfo = createSelector(
   movieState,
-  ({ page, totalPages, totalResults }: MoviesState): Paginator => ({ page, totalPages, totalResults }),
-)
+  ({ page, totalPages, totalResults }: MoviesState): Paginator => ({
+    page,
+    totalPages,
+    totalResults,
+  })
+);
 
 const isLoading = createSelector(
   movieState,
   ({ loading }: MoviesState) => loading
-)
+);
 
 export default {
   getSelectedMovie,
   getMovies,
   getPaginatorInfo,
-  isLoading
-}
+  isLoading,
+};

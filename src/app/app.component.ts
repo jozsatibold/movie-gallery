@@ -1,7 +1,7 @@
-import {Component} from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterLink, RouterOutlet } from '@angular/router';
-import {MenuComponent} from "./menu/menu.component";
-import {NotificationService} from "@shared/services";
+import { MenuComponent } from './menu/menu.component';
+import { NotificationService } from '@shared/services';
 import { NotificationComponent } from '@shared/components';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 

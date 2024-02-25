@@ -1,18 +1,27 @@
-<article class='h-auto bg-gradient-to-b to-gray-900 from-gray-950 text-white'>
-  <div class='w-full lg:w-4/6 flex flex-col items-start justify-center px-4 sm:px-8 md:px-20 pt-4 md:pt-16'>
-    <h2 class='text-3xl font-bold mb-4'>Welcome to Movie Haven!</h2>
-    <p class='text-lg mb-8'>Explore a vast universe of movies, discover hidden gems, and dive into detailed
-      information.</p>
+<article class="h-auto bg-gradient-to-b to-gray-900 from-gray-950 text-white pb-20">
+  <div
+    class="w-full lg:w-4/6 flex flex-col items-start justify-center px-4 sm:px-8 md:px-20 pt-4 md:pt-8">
+    <h2 class="text-3xl font-bold mb-4">Welcome to Movie Haven!</h2>
+    <p class="text-lg mb-8">
+      Explore a vast universe of movies, discover hidden gems, and dive into
+      detailed information.
+    </p>
   </div>
-  <div class='flex flex-col gap-4 px-4 sm:px-8 md:px-20 max-w-[1100px]'>
-    <h3 class='text-2xl font-bold mb-2'>Top popular movies</h3>
-    <div class='inline-grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-4 gap-y-8'>
+  <div class="flex flex-col gap-4 px-4 sm:px-8 md:px-20 xl:max-w-[1100px] 2xl:max-w-[1400px]">
+    <h3 class="text-2xl font-bold mb-2">Top popular movies</h3>
+    <div class="inline-grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-4 gap-y-8">
       @for (movie of topMovies$ | async; track movie.id) {
-        <a class='w-full h-auto group'  [routerLink]='"/" + movie.id'>
-          <img [src]='movie.poster_path | withImgUrl'
-               class='aspect-3/4 w-full rounded-md  group-hover:shadow-gray-800 group-hover:shadow-xl transition ease-in-out duration-200'
-               alt='Movie poster' />
-          <h5 class='text-xl mt-4 font-medium overflow-x-hidden whitespace-nowrap text-ellipsis w-full'>{{ movie.title }}</h5>
+        <a
+          class="w-full h-auto group max-w-[300px] m-auto"
+          [routerLink]="'/' + movie.id">
+          <img
+            [src]="movie.poster_path | withImgUrl"
+            class="aspect-3/4 w-full rounded-md group-hover:shadow-gray-800 group-hover:shadow-xl transition ease-in-out duration-200"
+            alt="Movie poster" />
+          <h5
+            class="text-lg md:text-xl mt-4 font-medium overflow-x-hidden whitespace-nowrap text-ellipsis w-full">
+            {{ movie.title }}
+          </h5>
         </a>
       }
     </div>

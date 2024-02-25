@@ -11,10 +11,8 @@ import { MoviesFacades } from '@global/facades';
   standalone: true,
   imports: [CommonModule, SpinnerComponent, ImagePipe],
   templateUrl: './detail.component.html',
-  styleUrl: './detail.component.scss',
 })
 export class DetailComponent {
-
   movie$: Observable<Movie | null> = this.moviesFacades.getSelectedMovie$;
 
   constructor(private moviesFacades: MoviesFacades) {}

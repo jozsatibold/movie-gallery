@@ -1,6 +1,16 @@
-import { Component, EventEmitter, input, Output, ViewChild } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  input,
+  Output,
+  ViewChild,
+} from '@angular/core';
 import { MenuItemComponent, SpinnerComponent } from '@shared/components';
-import { CdkFixedSizeVirtualScroll, CdkVirtualForOf, CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
+import {
+  CdkFixedSizeVirtualScroll,
+  CdkVirtualForOf,
+  CdkVirtualScrollViewport,
+} from '@angular/cdk/scrolling';
 import { MovieItem, Paginator } from '@global/models';
 
 @Component({
@@ -40,7 +50,7 @@ export class ItemScrollContainerComponent {
     if (!this.viewport) {
       return;
     }
-    const scrollTop = this.viewport.measureScrollOffset('top');
+
     const scrollBottom = this.viewport.measureScrollOffset('bottom');
     const viewportHeight = this.viewport.measureViewportSize('vertical');
 

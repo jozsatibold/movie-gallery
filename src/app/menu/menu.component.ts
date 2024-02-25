@@ -1,10 +1,4 @@
-import {
-  Component,
-  effect,
-  EventEmitter,
-  input,
-  Output,
-} from '@angular/core';
+import { Component, effect, EventEmitter, input, Output } from '@angular/core';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ItemScrollContainerComponent } from '@shared/components';
@@ -24,12 +18,12 @@ import { Paginator } from '@global/models';
   templateUrl: './menu.component.html',
 })
 export class MenuComponent {
-  isOpen = input.required<boolean>();
+  isOpen = input<boolean>(false);
 
   menuClasses: string = '';
 
   movies$ = this.moviesFacade.getMovies$;
-  paginator$: Observable<Paginator> = this.moviesFacade.getMoviesPaginator$
+  paginator$: Observable<Paginator> = this.moviesFacade.getMoviesPaginator$;
   isLoading$: Observable<boolean> = this.moviesFacade.isLoading$;
 
   @Output() close = new EventEmitter();

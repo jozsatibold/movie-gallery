@@ -1,13 +1,15 @@
-<cdk-virtual-scroll-viewport orientation='vertical'
-                             itemSize='52'
-                             (scroll)='onScroll()'
-                             class='overflow-y-auto scroll-smooth overflow-x-hidden w-full h-full block'>
-  <mg-menu-item *cdkVirtualFor='let movie of movies(); trackBy: cdkTrackBy'
-                [selected]='selected === movie.id'
-                [item]='movie'
-                (navigated)='itemSelected(movie.id)' />
+<cdk-virtual-scroll-viewport
+  orientation="vertical"
+  itemSize="52"
+  (scroll)="onScroll()"
+  class="overflow-y-auto scroll-smooth overflow-x-hidden w-full h-full block">
+  <mg-menu-item
+    *cdkVirtualFor="let movie of movies(); trackBy: cdkTrackBy"
+    [selected]="selected === movie.id"
+    [item]="movie"
+    (navigated)="itemSelected(movie.id)" />
   @if (isLoading()) {
-    <div class='flex items-center justify-center h-[52px]'>
+    <div class="flex items-center justify-center h-[52px]">
       <mg-spinner />
     </div>
   }

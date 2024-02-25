@@ -4,6 +4,7 @@ import {
   HttpRequest,
 } from '@angular/common/http';
 
+// This interceptor set the urls of the requests
 export const UrlInterceptor: HttpInterceptorFn = (
   req: HttpRequest<unknown>,
   next: HttpHandlerFn

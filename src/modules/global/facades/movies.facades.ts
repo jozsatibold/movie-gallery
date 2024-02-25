@@ -20,19 +20,24 @@ export class MoviesFacades {
   }
 
   clearMovie() {
-    this.store.dispatch(MoviesActions.clearMovie())
+    this.store.dispatch(MoviesActions.clearMovie());
   }
 
   loadMovies(page: number) {
-    this.store.dispatch(MoviesActions.loadMovies({ page }))
+    this.store.dispatch(MoviesActions.loadMovies({ page }));
   }
 
-  getMovies$: Observable<Array<MovieItem>> = this.store.select(MoviesSelector.getMovies);
+  getMovies$: Observable<Array<MovieItem>> = this.store.select(
+    MoviesSelector.getMovies
+  );
 
-  getMoviesPaginator$: Observable<Paginator> = this.store.select(MoviesSelector.getPaginatorInfo);
+  getMoviesPaginator$: Observable<Paginator> = this.store.select(
+    MoviesSelector.getPaginatorInfo
+  );
 
-  getSelectedMovie$: Observable<Movie | null> = this.store.select(MoviesSelector.getSelectedMovie);
+  getSelectedMovie$: Observable<Movie | null> = this.store.select(
+    MoviesSelector.getSelectedMovie
+  );
 
   isLoading$: Observable<boolean> = this.store.select(MoviesSelector.isLoading);
-
 }

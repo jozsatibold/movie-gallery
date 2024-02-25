@@ -1,4 +1,10 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, input, Output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  input,
+  Output,
+} from '@angular/core';
 import { MovieItem } from '@global/models';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';

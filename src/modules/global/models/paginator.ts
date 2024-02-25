@@ -1,5 +1,5 @@
 export interface Paginator {
   page: number;
-  totalPages: number,
+  totalPages: number;
   totalResults: number;
 }

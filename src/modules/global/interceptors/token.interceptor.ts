@@ -3,11 +3,14 @@ import {
   HttpInterceptorFn,
   HttpRequest,
 } from '@angular/common/http';
-import * as process from 'node:process';
 import { environment } from '../../../environments/environment';
 
-export const TokenInterceptor : HttpInterceptorFn = (req: HttpRequest<unknown>, next:
-  HttpHandlerFn) => {
+
+// This interceptor set the token to the header
+export const TokenInterceptor: HttpInterceptorFn = (
+  req: HttpRequest<unknown>,
+  next: HttpHandlerFn
+) => {
   const token = environment.apiKey;
   const isNotApiCall =
     req.url.match('^(((https|http)://)|(/assets/)).*$') !== null;
