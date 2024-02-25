@@ -11,15 +11,16 @@ describe('NotificationService', () => {
     service = TestBed.inject(NotificationService);
   });
 
-  it('should emit notification on notify', () => {
+  it('should emit notification on notify', done => {
     const message = 'Test message';
     const type = 'success';
 
     service.notify(message, type);
 
-    service.listener$.subscribe(result =>
-      expect(result).toEqual(jasmine.objectContaining({ message, type }))
-    );
+    service.listener$.subscribe(result => {
+      expect(result).toEqual(jasmine.objectContaining({ message, type }));
+      done();
+    });
   });
 
   it('should not emit notification for empty message', () => {
